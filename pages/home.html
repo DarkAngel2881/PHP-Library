@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/scripts/dragscroll.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bookScroll = document.querySelector('.book-scroll');
+            new dragscroll(bookScroll);
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Online</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.cdnfonts.com/css/fonseca" rel="stylesheet">
+    <header>
+        <div class="container">
+            <h1>Biblioteca Online</h1>
+
+        </div>
+        <nav>
+            <ul>
+                <li><button class="btn btn-primary btn-hover" onclick="location.href='home.html';">Home</button> </li>
+                <li><button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
+                </li>
+                <li><button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
+                </li>
+                <li><button class="btn btn-danger btn-hover">Bottone</button> </li>
+            </ul>
+        </nav>
+    </header>
+</head>
+
+<body>
+    <div class="page">
+        <br><br>
+        <!-- TODO -->
+
+
+        <h2>Ultimi Arrivi</h2>
+        <div class="book-scroll dragscroll">
+
+
+            <div class="book">
+                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/The-Little-Prince.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/The-Little-Prince.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
