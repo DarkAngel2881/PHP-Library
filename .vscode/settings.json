@@ -1,0 +1,87 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Connection",
+            "database": "dati_personali",
+            "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "test",
+            "database": "dati_personali",
+            "username": "root",
+            "password": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "EasyTrain",
+            "database": "Treni",
+            "username": "root",
+            "password": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "http://matteopati.altervista.org/",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "PHP-Library",
+            "database": "my_matteopati",
+            "username": "matteopati"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "darkangel-9653.7tc.aws-eu-central-1.cockroachlabs.cloud",
+            "port": 26257,
+            "driver": "MySQL",
+            "database": "libri",
+            "username": "darkangel",
+            "name": "Php-Library",
+            "password": "s9oEVV_IdYBZEKguLCYWSQ",
+            "connectionTimeout": 2000
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "darkangel-9653.7tc.aws-eu-central-1.cockroachlabs.cloud",
+            "port": 26257,
+            "driver": "MySQL",
+            "name": "db_libri",
+            "database": "libri",
+            "username": "darkangel",
+            "password": "s9oEVV_IdYBZEKguLCYWSQ"
+        }
+    ]
+}
