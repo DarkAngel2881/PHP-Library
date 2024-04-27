@@ -15,28 +15,22 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.cdnfonts.com/css/fonseca" rel="stylesheet">
     <header>
+        
         <div class="container">
             <h1>Biblioteca Online</h1>
-
         </div>
-        <nav>
-            <ul>
-                <li><button class="btn btn-primary btn-hover" onclick="location.href='home.html';">Home</button> </li>
-                <li><button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
-                </li>
-                <li><button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
-                </li>
-            </ul>
-        </nav>
+
+        <div class="navbar">
+            <button class="btn btn-primary btn-hover" onclick="location.href='home.html';">Home</button>
+            <button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Tendenza</button>
+        </div>
     </header>
 </head>
 
 <body>
     <div class="page">
-        <br><br>
-        <!-- TODO -->
-
-
         <h2>Ultimi Arrivi</h2>
         <div class="book-scroll dragscroll">
 
@@ -90,7 +84,30 @@
             </div>
 
         </div>
-    </div>
+
+        <h2>Fantasy</h2>
+        <div class="book-scroll dragscroll">
+            <div class="book">
+                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+            <div class="book">
+                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
+            </div>
+
+        </div>
 
     </div>
 
