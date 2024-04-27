@@ -36,10 +36,10 @@
             <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
             <button id="book-button" class="book-button"></button>
             <div id="book-info" class="book-info">
-                <input type="text" id="book-title" placeholder="Book Title">
-                <input type="text" id="book-author" placeholder="Author Name">
-                <input type="text" id="book-publisher" placeholder="Publisher Name">
-                <input type="text" id="book-year" placeholder="Year">
+                <input type="text" id="book-title" placeholder="Book Title"><br><br>
+                <input type="text" id="book-author" placeholder="Author Name"><br>
+                <input type="text" id="book-publisher" placeholder="Publisher Name"><br>
+                <input type="text" id="book-year" placeholder="Year"><br>
                 <input type="text" id="book-genre" placeholder="Genre">
             </div>
         </div>
