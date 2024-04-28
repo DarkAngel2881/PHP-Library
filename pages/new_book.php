@@ -32,15 +32,15 @@
 <body>
 
     <div class="page">
-
+<form action="/php/fetch.php" method="post" enctype="multipart/form-data">
         <div class="book-details">
             <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
-            <button id="book-button" class="book-button"></button>
+            <input id="book-button" name="bookCover" class="book-button"></button>
             <div id="book-info" class="book-info">
                 <input type="text" id="book-title" name="book-title" placeholder="Book Title"><br><br>
-                <input type="text" id="book-author" name="book-author" placeholder="Author Name"><br>
-                <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher Name"><br>
-                <input type="text" id="book-year" name="book-year" placeholder="Year"><br>
+                <input type="text" id="book-author" name="book-author" placeholder="Author Name"><br><br>
+                <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher Name"><br><br>
+                <input type="text" id="book-year" name="book-year" placeholder="Year"><br><br>
                 <input type="text" id="book-genre" name="book-genre" placeholder="Genre">
             </div>
         </div>
@@ -48,7 +48,9 @@
         <h3>Trama</h3>
         <textarea name="trama" id="trama" cols="100" rows="10" placeholder="trama del libro"></textarea>
         <br>
-        <button id="submit-button">Submit</button>
+        
+        <input type="submit" value="Submit" id="submit-button">
+        </form>
     </div>
 
     <script>
@@ -56,7 +58,6 @@
         const book = document.getElementById('book');
         const bookCover = document.getElementById('book-cover');
         const bookInfo = document.getElementById('book-info');
-        const submitButton = document.getElementById('submit-button');
 
         bookButton.addEventListener('click', () => {
             const input = document.createElement('input');
@@ -71,76 +72,14 @@
                     bookCover.src = reader.result;
                     book.style.display = 'inline-block';
                     bookButton.style.display = 'none';
-                    bookInfo.style.marginLeft = '0px';
-
-                    // Get the book information from the form fields
-                    const bookTitle = document.getElementById('book-title').value;
-                    const bookAuthor = document.getElementById('book-author').value;
-                    const bookPublisher = document.getElementById('book-publisher').value;
-                    const bookYear = document.getElementById('book-year').value;
-                    const bookGenre = document.getElementById('book-genre').value;
-                    const trama = document.getElementById('trama').value;
-
-                    // Create a FormData object to store the book information
-                    const formData = new FormData();
-                    formData.append('bookTitle', bookTitle);
-                    formData.append('bookAuthor', bookAuthor);
-                    formData.append('bookPublisher', bookPublisher);
-                    formData.append('bookYear', bookYear);
-                    formData.append('bookGenre', bookGenre);
-                    formData.append('trama', trama);
-                    formData.append('bookCover', file);
-
-                    // Send the book information to the PHP page using fetch
-                    fetch('path/to/php/page.php', {
-                            method: 'POST',
-                            body: formData
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Book information saved successfully:', data);
-                        })
-                        .catch(error => {
-                            console.error('Error saving book information:', error);
-                        });
-                });
+                    bookInfo.style.marginLeft = '0px';});
                 reader.readAsDataURL(file);
             });
 
             input.click();
         });
 
-        submitButton.addEventListener('click', () => {
-            // Get the book information from the form fields
-            const bookTitle = document.getElementById('book-title').value;
-            const bookAuthor = document.getElementById('book-author').value;
-            const bookPublisher = document.getElementById('book-publisher').value;
-            const bookYear = document.getElementById('book-year').value;
-            const bookGenre = document.getElementById('book-genre').value;
-            const trama = document.getElementById('trama').value;
-
-            // Create a FormData object to store the book information
-            const formData = new FormData();
-            formData.append('bookTitle', bookTitle);
-            formData.append('bookAuthor', bookAuthor);
-            formData.append('bookPublisher', bookPublisher);
-            formData.append('bookYear', bookYear);
-            formData.append('bookGenre', bookGenre);
-            formData.append('trama', trama);
-
-            // Send the book information to the PHP page using fetch
-            fetch('/php/fetch.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Book information saved successfully:', data);
-                })
-                .catch(error => {
-                    console.error('Error saving book information:', error);
-                });
-        });
+        
     </script>
 </body>
 
