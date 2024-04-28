@@ -101,6 +101,15 @@ header {
     font-family: 'Fonseca', sans-serif;
 }
 
+textarea{
+    background-color: grey;
+}
+
+textarea::placeholder{
+    color: black;
+    font-family: 'Fonseca', sans-serif;
+}
+
 .navbar {
     display: flex;
     justify-content: center;
