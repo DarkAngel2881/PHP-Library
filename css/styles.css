@@ -94,6 +94,7 @@ header {
     color: black;
     border: none;
     font-family: 'Fonseca', sans-serif;
+    cursor: pointer;
 }
 
 .book-info input::placeholder {

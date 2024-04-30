@@ -15,6 +15,32 @@
         .book-info {
             margin-left: 20px;
         }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .cover_input {
+            display: inline-block;
+            width: 120px;
+            height: 192px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            background-image: url("/resources/plus.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 40%;
+            background-color: grey;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            vertical-align: center;
+            font-family: 'Fonseca', sans-serif;
+            font-size: 0.8em;
+            margin: auto;
+            -webkit-tap-highlight-color: transparent;
+        }
     </style>
     <header>
         <div class="container">
@@ -32,24 +58,25 @@
 <body>
 
     <div class="page">
-<form action="/php/fetch.php" method="post" enctype="multipart/form-data">
-        <div class="book-details">
-            <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
-            <input id="book-button" name="bookCover" class="book-button"></button>
-            <div id="book-info" class="book-info">
-                <input type="text" id="book-title" name="book-title" placeholder="Book Title"><br><br>
-                <input type="text" id="book-author" name="book-author" placeholder="Author Name"><br><br>
-                <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher Name"><br><br>
-                <input type="text" id="book-year" name="book-year" placeholder="Year"><br><br>
-                <input type="text" id="book-genre" name="book-genre" placeholder="Genre">
+        <form action="fetch.php" method="post" enctype="multipart/form-data">
+            <div class="book-details">
+                <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
+                <!--<input id="book-button" name="bookCover" class="book-button">-->
+                <label class="cover_input" id="book-button"><input type="file" id="immagine" name="immagine" accept="image/png, image/jpeg"></label>
+                <div id="book-info" class="book-info">
+                    <input type="text" id="book-title" name="book-title" placeholder="Book Title"><br><br>
+                    <input type="text" id="book-author" name="book-author" placeholder="Author Name"><br><br>
+                    <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher Name"><br><br>
+                    <input type="text" id="book-year" name="book-year" placeholder="Year"><br><br>
+                    <input type="text" id="book-genre" name="book-genre" placeholder="Genre">
+                </div>
             </div>
-        </div>
 
-        <h3>Trama</h3>
-        <textarea name="trama" id="trama" cols="100" rows="10" placeholder="trama del libro"></textarea>
-        <br>
-        
-        <input type="submit" value="Submit" id="submit-button">
+            <h3>Trama</h3>
+            <textarea name="trama" id="trama" cols="100" rows="10" placeholder="trama del libro"></textarea>
+            <br>
+
+            <input type="submit" value="Submit" id="submit-button">
         </form>
     </div>
 
@@ -59,27 +86,14 @@
         const bookCover = document.getElementById('book-cover');
         const bookInfo = document.getElementById('book-info');
 
-        bookButton.addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-
-            input.addEventListener('change', () => {
-                const file = input.files[0];
-                const reader = new FileReader();
-
-                reader.addEventListener('load', () => {
-                    bookCover.src = reader.result;
-                    book.style.display = 'inline-block';
-                    bookButton.style.display = 'none';
-                    bookInfo.style.marginLeft = '0px';});
-                reader.readAsDataURL(file);
-            });
-
-            input.click();
+        bookButton.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
+            bookCover.src = url;
+            book.style.display = 'block';
+            bookButton.style.display = 'none';
+            bookInfo.style.marginLeft = '0px';
         });
-
-        
     </script>
 </body>
 
