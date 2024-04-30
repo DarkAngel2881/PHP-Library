@@ -99,6 +99,7 @@ header {
 
 .book-info input::placeholder {
     color: black;
+    font-size: 1.3em;
     font-family: 'Fonseca', sans-serif;
 }
 
@@ -110,6 +111,17 @@ textarea::placeholder{
     color: black;
     font-family: 'Fonseca', sans-serif;
 }
+
+select {
+    background-color: grey;
+    color: black;
+    border: none;
+    font-family: 'Fonseca', sans-serif;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1.1em;
+}
+
 
 .navbar {
     display: flex;

@@ -64,11 +64,34 @@
                 <!--<input id="book-button" name="bookCover" class="book-button">-->
                 <label class="cover_input" id="book-button"><input type="file" id="immagine" name="immagine" accept="image/png, image/jpeg"></label>
                 <div id="book-info" class="book-info">
-                    <input type="text" id="book-title" name="book-title" placeholder="Book Title"><br><br>
-                    <input type="text" id="book-author" name="book-author" placeholder="Author Name"><br><br>
-                    <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher Name"><br><br>
-                    <input type="text" id="book-year" name="book-year" placeholder="Year"><br><br>
-                    <input type="text" id="book-genre" name="book-genre" placeholder="Genre">
+                    <input type="text" id="book-title" name="book-title" placeholder="Title">
+                    <input type="number" name="book-pages" id="book-pages" placeholder="N. Pages"><br><br>
+                    <input type="text" id="book-author" name="book-author" placeholder="Author"><br><br>
+                    <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher"><br><br>
+                    <input type="number" id="book-year" name="book-year" placeholder="Year" min="0" max="<?php echo date("Y")?>" step="1"><br><br>
+                    <select type="" id="book-genre" name="book-genre" placeholder="Genre">
+                        <option value="none" selected disabled hidden>Genre</option>
+                        <option value="fantasy">🧙🏻‍♂️Fantasy</option>
+                        <option value="horror">💀Horror</option>
+                        <option value="romance">💘Romance</option>
+                        <option value="thriller">😱Thriller</option>
+                        <option value="comedy">🤣Comedy</option>
+                        <option value="drama">🥹Drama</option>
+                        <option value="action">🔫Action</option>
+                        <option value="scifi">🛸Sci-Fi</option>
+                        <option value="adventure">⛵Adventure</option>
+                        <option value="science">🔬Science</option>
+                        <option value="literature">✍🏻Literature</option>
+                        <option value="history">🕰️History</option>
+                        <option value="biography">🧑🏻Biography</option>
+                        <option value="comics">💬Comics</option>
+                        <option value="manga">⛩️Manga</option>
+                        <option value="children">👦🏻Children</option>
+                        <option value="crime">🕵🏻Crime</option>
+                        <option value="food">🍴Food</option>
+                    </select>
+                    
+
                 </div>
             </div>
 
