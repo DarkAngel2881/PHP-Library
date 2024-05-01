@@ -4,7 +4,7 @@
 <head>
     <script>
         setTimeout(function() {
-            window.location.href = 'book.php?id=' + <?php db_connection("SELECT ID_Libro FROM libri ORDER BY ID_Libro DESC LIMIT 1") ?>;
+            window.location.href = 'book.php?id=' + <?php echo ((db_connection("SELECT ID_Libro FROM libri ORDER BY ID_Libro DESC LIMIT 1"))['ID_Libro']) ?>;
         }, 5000);
     </script>
 
@@ -74,8 +74,11 @@
             $res = $conn->query($sql);
 
             $conn->close();
+            foreach($res as $value){
+                return $value;
+            }
 
-            return $res;
+            
         }
 
 
@@ -94,8 +97,8 @@
         }
 
 
-        $sql = "INSERT INTO libri (Copertina, Titolo, Autore, Data_Pubblicazione, Genere, Trama, Numero_Pagine)
-VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre', '$trama', '$pages')";
+        $sql = "INSERT INTO libri (Copertina, Titolo, Autore, Data_Pubblicazione, Genere, Trama, Numero_Pagine, Casa_Editrice)
+VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre', '$trama', '$pages', '$bookPublisher')";
 
 
         $res = $conn->query($sql);

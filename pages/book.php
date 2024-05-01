@@ -58,15 +58,15 @@
         <div class="book-details">
             <div class="book"><?php echo '<img src="/uploads/'. $book["Copertina"] . '" alt="Book cover" class="book-cover">';?></div>
             <div class="book-info">
-                <h2><?php echo $book['Titolo']; ?></h2>
-                <p><?php echo $book['Autore']; ?></p>
-                <p><?php echo $book['ID_Casa_Editrice']; ?></p>
-                <p><?php echo date('Y', strtotime($book['Data_Pubblicazione'])); ?></p>
-                <p><?php echo $book['Genere']; ?></p>
+                <h2><?php echo $book['Titolo']; ?></h2><br>
+                <h3><?php echo "Autor:" ?> </h3> <p><?php $book['Autore'] ?> </p> <?php echo "<h3>        N. Pages: </h3> <p>" . $book['Numero_Pagine']. "</p>"?>
+                <h3><?php echo "Publisher:" . $book['Casa_Editrice']; ?></h3>
+                <h3><?php echo "Date:" . date('Y', strtotime($book['Data_Pubblicazione'])); ?></h3>
+                <h3><?php echo "Genre:" . $book['Genere']; ?></h3>
             </div>
         </div>
 
-        <h3>Trama</h3>
+        <h3>Plot</h3>
         <p><?php echo $book['Trama']; ?></p>
     </div>
 </body>

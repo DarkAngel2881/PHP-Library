@@ -71,6 +71,14 @@ h1 {
 h2 {
     font-family: 'Fonseca', sans-serif;
     color: black;
+    margin: 0;
+}
+
+h3 {
+    font-family: 'Fonseca', sans-serif;
+    color: black;
+    font-size: 1em;
+    margin: 0;
 }
 
 header {
