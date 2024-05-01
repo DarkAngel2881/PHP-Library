@@ -17,6 +17,7 @@
             <button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Tendenza</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro+</button>
         </div>
     </header>
 </head>

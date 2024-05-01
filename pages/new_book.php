@@ -51,6 +51,7 @@
             <button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
             <button class="btn btn-success btn-hover" onclick="location.href='trends.html';">Tendenza</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro+</button>
         </div>
     </header>
 </head>
@@ -58,6 +59,7 @@
 <body>
 
     <div class="page">
+        <h2 style="margin-left: 10px;">new book</h2>
         <form action="fetch.php" method="post" enctype="multipart/form-data">
             <div class="book-details">
                 <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
@@ -68,10 +70,33 @@
                     <input type="number" name="book-pages" id="book-pages" placeholder="N. Pages"><br><br>
                     <input type="text" id="book-author" name="book-author" placeholder="Author"><br><br>
                     <input type="text" id="book-publisher" name="book-publisher" placeholder="Publisher"><br><br>
-                    <input type="number" id="book-year" name="book-year" placeholder="Year" min="0" max="<?php echo date("Y")?>" step="1"><br><br>
+                    <input type="number" id="book-year" name="book-year" placeholder="Year" min="0" max="<?php echo date("Y") ?>" step="1"><br><br>
                     <select type="" id="book-genre" name="book-genre" placeholder="Genre">
                         <option value="none" selected disabled hidden>Genre</option>
-                        <option value="fantasy">🧙🏻‍♂️Fantasy</option>
+                        <?php $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "libri";
+
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        $sql = "SELECT Icon, Nome FROM generi;";
+
+                        $conn = $conn->query($sql);
+
+                        foreach ($conn as $genre) {
+                            echo "<option value='" . $genre["Nome"] . "'>" . $genre['Icon'] . $genre['Nome'] . "</option>";
+                        }
+
+                        $conn->close(); ?>
+
+                        <!--<option value="fantasy">🧙🏻‍♂️Fantasy</option>
                         <option value="horror">💀Horror</option>
                         <option value="romance">💘Romance</option>
                         <option value="thriller">😱Thriller</option>
@@ -89,8 +114,9 @@
                         <option value="children">👦🏻Children</option>
                         <option value="crime">🕵🏻Crime</option>
                         <option value="food">🍴Food</option>
+                        -->
                     </select>
-                    
+
 
                 </div>
             </div>

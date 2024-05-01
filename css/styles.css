@@ -3,9 +3,10 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0p;
+    padding: 0;
     background-color: rgb(15, 15, 15);
     color: #333;
+    
 }
 
 .page {
@@ -16,6 +17,10 @@ body {
     overflow: hidden;
     background-color: grey;
     color: #333;
+    max-width: fit-content;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 .container {
