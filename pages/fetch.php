@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-
     <script>
         setTimeout(function() {
-            window.location.href = 'home.html';
+            window.location.href = 'book.php?id=' + <?php db_connection("SELECT ID_Libro FROM libri ORDER BY ID_Libro DESC LIMIT 1") ?>;
         }, 5000);
     </script>
+
     <style>
         .page {
             display: flex;
@@ -31,7 +31,7 @@
 <body>
     <div class="page">
         <?php
-        define('UPLOAD_DIR', 'C:/Users/matte/Desktop/PHP-Library/uploads/');
+        define('UPLOAD_DIR', 'C:/Users/matte/Documents/Scuola/Informatica/PHP-Library/uploads');
 
         if (isset($_FILES['immagine'])) {   //recupero il nome
             $file = $_FILES['immagine'];
@@ -56,10 +56,27 @@
         $trama = $_POST['trama'];
         $pages = $_POST['book-pages'];
 
+        function db_connection($sql)
+        {
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "libri";
 
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
+            $res = $conn->query($sql);
 
+            $conn->close();
+
+            return $res;
+        }
 
 
 
@@ -81,9 +98,9 @@
 VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre', '$trama', '$pages')";
 
 
+        $res = $conn->query($sql);
 
-
-        if ($conn->query($sql) === TRUE) {
+        if ($res === TRUE) {
             echo "<h2>New book added successfully</h2>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -91,11 +108,20 @@ VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre'
         echo "<h3>Redirecting...</h3>";
 
         $conn->close();
+
+
+
+
+
+
+
         ?>
 
     </div>
 
 
+
 </body>
+
 
 </html>

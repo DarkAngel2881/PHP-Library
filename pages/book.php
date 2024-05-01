@@ -24,18 +24,50 @@
 
 <body>
     <div class="page">
+        <?php
+
+        function db_connection($sql)
+        {
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "libri";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $res = $conn->query($sql);
+
+            foreach ($res as $query) {
+                $conn->close();
+
+                return $query;
+            }
+        }
+
+        $bookId = $_GET['id'];
+
+        $book = db_connection("SELECT * FROM libri WHERE ID_Libro = $bookId");
+        ?>
+
         <div class="book-details">
-            <div class="book"><img src="/resources/1984.jpg" alt="Book cover" class="book-cover"></div>
+            <div class="book"><?php echo '<img src="/uploads/'. $book["Copertina"] . '" alt="Book cover" class="book-cover">';?></div>
             <div class="book-info">
-                <h2>Book Title</h2>
-                <p>Author Name</p>
-                <p>Publisher Name</p>
-                <p>Year</p>
-                <p>Genre</p>
+                <h2><?php echo $book['Titolo']; ?></h2>
+                <p><?php echo $book['Autore']; ?></p>
+                <p><?php echo $book['ID_Casa_Editrice']; ?></p>
+                <p><?php echo date('Y', strtotime($book['Data_Pubblicazione'])); ?></p>
+                <p><?php echo $book['Genere']; ?></p>
             </div>
         </div>
 
         <h3>Trama</h3>
+        <p><?php echo $book['Trama']; ?></p>
     </div>
 </body>
 
