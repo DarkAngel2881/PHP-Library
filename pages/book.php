@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <style>
+        .book{
+            margin-left: 0;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
@@ -52,22 +57,28 @@
 
         $bookId = $_GET['id'];
 
-        $book = db_connection("SELECT * FROM libri WHERE ID_Libro = $bookId");
+        $book = db_connection("SELECT libri.*, generi.Icon
+        FROM libri
+        JOIN generi ON libri.Genere = generi.Nome
+        WHERE libri.ID_Libro = $bookId;");
         ?>
 
         <div class="book-details">
-            <div class="book"><?php echo '<img src="/uploads/'. $book["Copertina"] . '" alt="Book cover" class="book-cover">';?></div>
+            <div class="book"><?php echo '<img src="/uploads/' . $book["Copertina"] . '" alt="Book cover" class="book-cover">'; ?></div>
             <div class="book-info">
-                <h2><?php echo $book['Titolo']; ?></h2><br>
-                <h3><?php echo "Autor:" ?> </h3> <p><?php $book['Autore'] ?> </p> <?php echo "<h3>        N. Pages: </h3> <p>" . $book['Numero_Pagine']. "</p>"?>
-                <h3><?php echo "Publisher:" . $book['Casa_Editrice']; ?></h3>
-                <h3><?php echo "Date:" . date('Y', strtotime($book['Data_Pubblicazione'])); ?></h3>
-                <h3><?php echo "Genre:" . $book['Genere']; ?></h3>
+                <h2><?php echo $book['Titolo']; ?></h2>
+                <strong><?php echo $book['Autore'] ?></strong><br><br>
+                <?php echo "<strong>" . $book['Numero_Pagine'] . "</strong> pagine" ?><br><br>
+                <?php echo "<strong>" . $book['Casa_Editrice'] . "</strong>" ?><br><br>
+                <?php echo "<strong>" . date('Y', strtotime($book['Data_Pubblicazione'])) . "</strong> (anno edizione)" ?><br><br>
+                <?php echo "<div style='font-size: 1.25em; display: inline-block'>" . $book['Icon'] . "</div><strong> " . $book['Genere'] . "</strong>" ?>
+
             </div>
         </div>
+        <br><br>
 
-        <h3>Plot</h3>
-        <p><?php echo $book['Trama']; ?></p>
+        <h3>Descrizione</h3>
+        <p style="max-width: 65%;"><?php echo $book['Trama']; ?></p>
     </div>
 </body>
 
