@@ -21,19 +21,19 @@
         </div>
 
         <div class="navbar">
-            <button class="btn btn-primary btn-hover" onclick="location.href='home.html';">Home</button>
+            <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
             <button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Tendenza</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='tendenze.html';">Tendenza</button>
             <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro+</button>
         </div>
     </header>
 </head>
 
 <body>
+    <br>
     <div class="page">
         <div class="book-scroll dragscroll">
-
             <h2>Sci-Fi</h2>
             <?php
             $servername = "localhost";
@@ -49,100 +49,23 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT Copertina FROM libri;";
+            $sql = "SELECT Copertina, ID_Libro FROM libri;";
 
             $conn = $conn->query($sql);
             $i = 0;
-            foreach ($conn as $copertina) {
+            foreach ($conn as $libro) {
                 if ($i <= 7) {
                     $i++;
                     echo '<div class="book">
-                            <img src="/resources/' .$copertina['Copertina']. '" alt="Book cover" class="book-cover">
+                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
                           </div>';
                 }
             }
-
-
             $conn->close();
-
-
             ?>
-            <!--
-            <div class="book">
-                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/The-Little-Prince.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/The-Little-Prince.jpg" alt="Book cover" class="book-cover">
-            </div>
-            -->
-
         </div>
 
-        <h2>Fantasy</h2>
-        <div class="book-scroll dragscroll">
-            <div class="book">
-                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-            <div class="book">
-                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
-            </div>
-
-        </div>
-
+        
     </div>
 
 </body>

@@ -4,7 +4,7 @@
 <head>
     <script>
         setTimeout(function() {
-            window.location.href = 'book.php?id=' + <?php echo ((db_connection("SELECT ID_Libro FROM libri ORDER BY ID_Libro DESC LIMIT 1"))['ID_Libro']) ?>;
+            window.location.href = 'home.php';
         }, 5000);
     </script>
 
