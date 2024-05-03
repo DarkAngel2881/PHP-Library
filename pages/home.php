@@ -31,27 +31,37 @@
 </head>
 
 <body>
+    <?php
+    function db_connection($sql)
+    {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "libri";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $res = $conn->query($sql);
+
+        $conn->close();
+
+        return $res;
+    } ?>
     <br>
     <div class="page">
         <div class="book-scroll dragscroll">
             <h2>Sci-Fi</h2>
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "libri";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            $conn = db_connection("SELECT Copertina, ID_Libro FROM libri;");
 
-            $sql = "SELECT Copertina, ID_Libro FROM libri;";
-
-            $conn = $conn->query($sql);
             $i = 0;
             foreach ($conn as $libro) {
                 if ($i <= 7) {
@@ -65,7 +75,7 @@
             ?>
         </div>
 
-        
+
     </div>
 
 </body>
