@@ -31,7 +31,7 @@
 <body>
     <div class="page">
         <?php
-        define('UPLOAD_DIR', 'C:/Users/matte/Documents/Scuola/Informatica/PHP-Library/uploads');
+        define('UPLOAD_DIR', 'C:/Users/matte/Documents/Scuola/Informatica/PHP-Library/uploads/');
 
         if (isset($_FILES['immagine'])) {   //recupero il nome
             $file = $_FILES['immagine'];
@@ -74,34 +74,18 @@
             $res = $conn->query($sql);
 
             $conn->close();
-            foreach($res as $value){
+            foreach ($res as $value) {
                 return $value;
             }
-
-            
         }
 
-
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "libri";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
 
         $sql = "INSERT INTO libri (Copertina, Titolo, Autore, Data_Pubblicazione, Genere, Trama, Numero_Pagine, Casa_Editrice)
 VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre', '$trama', '$pages', '$bookPublisher')";
 
 
-        $res = $conn->query($sql);
+        $res = db_connection($sql);
 
         if ($res === TRUE) {
             echo "<h2>New book added successfully</h2>";

@@ -56,14 +56,13 @@
     <br>
     <div class="page">
         <div class="book-scroll dragscroll">
-            <h2>Sci-Fi</h2>
+            <?php $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = 'Sci-Fi'"); ?>
+
+            <h2><?php echo ($bookrow->fetch_assoc())['Icon']; ?>Sci-Fi</h2>
+
             <?php
-
-
-            $conn = db_connection("SELECT Copertina, ID_Libro FROM libri;");
-
             $i = 0;
-            foreach ($conn as $libro) {
+            foreach ($bookrow as $libro) {
                 if ($i <= 7) {
                     $i++;
                     echo '<div class="book">
@@ -71,7 +70,25 @@
                           </div>';
                 }
             }
-            $conn->close();
+            $bookrow->close();
+            ?>
+        </div>
+        <div class="book-scroll dragscroll">
+            <?php $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = 'Drama'"); ?>
+
+            <h2><?php echo ($bookrow->fetch_assoc())['Icon']; ?>Drama</h2>
+
+            <?php
+            $i = 0;
+            foreach ($bookrow as $libro) {
+                if ($i <= 7) {
+                    $i++;
+                    echo '<div class="book">
+                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
+                          </div>';
+                }
+            }
+            $bookrow->close();
             ?>
         </div>
 
