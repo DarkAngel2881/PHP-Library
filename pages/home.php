@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Online</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/searchbar.css">
     <link href="https://fonts.cdnfonts.com/css/fonseca" rel="stylesheet">
     <header>
 
@@ -22,10 +23,12 @@
 
         <div class="navbar">
             <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
-            <button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Categorie</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='tendenze.html';">Tendenza</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro+</button>
+            <form class="search-box" action="search.php">
+                <input type="text" placeholder="What do you want to read..." />
+                <button type="reset"></button>
+            </form>
+            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Generi</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro +</button>
         </div>
     </header>
 </head>

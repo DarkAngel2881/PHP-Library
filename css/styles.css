@@ -125,11 +125,11 @@ header {
     font-family: 'Fonseca', sans-serif;
 }
 
-textarea{
+textarea {
     background-color: grey;
 }
 
-textarea::placeholder{
+textarea::placeholder {
     color: black;
     font-family: 'Fonseca', sans-serif;
 }
@@ -165,7 +165,15 @@ select {
     font-size: 0.8em;
     margin: auto;
     -webkit-tap-highlight-color: transparent;
+}
 
+.navbar form{
+    background-color: white;
+    cursor: pointer;
+    vertical-align: center;
+    font-family: 'Fonseca', sans-serif;
+    margin: auto;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .book-button {
@@ -188,4 +196,25 @@ select {
     font-size: 0.8em;
     margin: auto;
     -webkit-tap-highlight-color: transparent;
+}
+
+
+.filter-box {
+    position: relative;
+}
+
+.filter-scroll-box {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.filter-button:focus+.filter-scroll-box {
+    display: block;
 }
