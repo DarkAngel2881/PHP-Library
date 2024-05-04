@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
+
     <script>
         setTimeout(function() {
             window.location.href = 'home.php';
         }, 5000);
     </script>
-
     <style>
         .page {
             display: flex;
@@ -74,9 +74,8 @@
             $res = $conn->query($sql);
 
             $conn->close();
-            foreach ($res as $value) {
-                return $value;
-            }
+
+            return $res;
         }
 
 
@@ -93,14 +92,6 @@ VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre'
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
         echo "<h3>Redirecting...</h3>";
-
-        $conn->close();
-
-
-
-
-
-
 
         ?>
 
