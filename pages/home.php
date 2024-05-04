@@ -55,6 +55,30 @@
     } ?>
     <br>
     <div class="page">
+        <?php
+        $genre = db_connection("SELECT DISTINCT Genere FROM libri WHERE genere IS NOT NULL");
+        foreach ($genre as $row) {
+            echo '<div class="book-scroll dragscroll">';
+            $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = '" . $row['Genere'] . "'");
+
+            echo "<h2>" . ($bookrow->fetch_assoc())['Icon'] . $row['Genere'] . "</h2>";
+
+            $i = 0;
+            foreach ($bookrow as $libro) {
+                if ($i <= 7) {
+                    $i++;
+                    echo '<div class="book">
+                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
+                          </div>';
+                }
+            }
+            $bookrow->close();
+            echo '</div><br><br>';
+        }
+        ?>
+
+
+        <!--
         <div class="book-scroll dragscroll">
             <?php $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = 'Sci-Fi'"); ?>
 
@@ -110,6 +134,9 @@
             ?>
         </div>
         <br><br>
+
+
+
         <h2>All</h2>
         <div class="book-scroll dragscroll">
             <div class="book">
@@ -131,7 +158,7 @@
                 <img src="/resources/The-Little-Prince.jpg" alt="Book cover" class="book-cover">
             </div>
         </div>
-
+        -->
     </div>
 
 </body>
