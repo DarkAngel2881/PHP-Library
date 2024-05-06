@@ -1,0 +1,72 @@
+/* Add a new class for the filter interface */
+.filter-interface {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: grey;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  /* Hide by default */
+  width: 45%;
+  font-family: 'Fonseca', sans-serif;
+}
+
+/* Add a new class for the filter interface when it's visible */
+.filter-interface.visible {
+  display: block;
+}
+
+/* Add a new class for the filter options */
+.filter-option {
+  margin-bottom: 10px;
+}
+/* Style the filter option for the year input */
+.filter-input {
+  margin-bottom: 10px;
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: grey;
+  appearance: none;
+}
+
+/* Style the filter label */
+.filter-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style the filter button */
+.filter-button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: #3e8e41;
+}
+
+.filter-select {
+  margin-bottom: 10px;
+  width: 75%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: grey;
+  appearance: none;
+}
+
+
+.filter-button:hover {
+  background-color: #3e8e41;
+}
