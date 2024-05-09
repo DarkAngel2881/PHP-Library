@@ -80,10 +80,16 @@
 
         return $res;
     }
-    function get_query()
+    function get_query($query=null, $genre = null, $year = null)
     {
-        $query = $_GET['query'];
-        $sql = "SELECT * FROM libri WHERE Titolo LIKE '%$query%' OR Autore LIKE '%$query%' OR Casa_Editrice LIKE '%$query%'";
+        $sql = "SELECT * FROM libri WHERE (Titolo LIKE '%$query%' OR Autore LIKE '%$query%' OR Casa_Editrice LIKE '%$query%')";
+        if (!empty($genre)) {
+            $sql .= " AND Genere = '$genre'";
+        }
+        if (!empty($year)) {
+            $sql .= " AND Data_Pubblicazione = '$year/01/01'";
+        }
+        // echo $sql;
         return db_connection($sql);
     }
 
@@ -105,8 +111,10 @@
 
         <div class="searched-books">
             <?php
-            if (isset($_GET['query'])) {
-                foreach (get_query() as $book) {
+                $query = isset($_GET['query']) ? $_GET['query'] : null;
+                $genre = isset($_GET['genre']) ? $_GET['genre'] : null;
+                $year = isset($_GET['year']) ? $_GET['year'] : null;
+                foreach (get_query($query, $genre, $year) as $book) {
                     $i = 0;
                     if ($i <= 20) {
                         $i++;
@@ -115,16 +123,16 @@
                           </div>';
                     }
                 }
-            }
 
             ?>
         </div>
 
         <div class="filter-interface">
-            <form>
+            <form action="search.php" method="get">
+            <input type="hidden" name="query" value="<?php echo htmlspecialchars($query);?>">
                 <div class="filter-option">
                     <label class="filter-label">Genre</label>
-                    <select class="filter-select" type="" id="book-genre" name="book-genre">
+                    <select class="filter-select" type="" id="genre" name="genre">
                         <option value="none" selected disabled hidden></option>
                         <?php
                         $sql = "SELECT Icon, Nome FROM generi;";
@@ -139,7 +147,7 @@
                 </div>
                 <div class="filter-option">
                     <label class="filter-label">Year</label>
-                    <input class="filter-input" type="number">
+                    <input class="filter-input" type="number" id="year" name="year">
                 </div>
                 <button class="filter-button">Apply filters</button>
             </form>

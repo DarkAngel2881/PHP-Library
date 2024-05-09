@@ -24,7 +24,7 @@
         <div class="navbar">
             <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
             <form class="search-box" action="search.php">
-                <input type="text" placeholder="What do you want to read..." />
+                <input type="text" name="query" placeholder="What do you want to read..." />
                 <button type="reset"></button>
             </form>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Generi</button>
@@ -61,10 +61,11 @@
         <?php
         $genre = db_connection("SELECT DISTINCT Genere FROM libri WHERE genere IS NOT NULL");
         foreach ($genre as $row) {
-            echo '<div class="book-scroll dragscroll">';
             $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = '" . $row['Genere'] . "'");
-
             echo "<h2>" . ($bookrow->fetch_assoc())['Icon'] . $row['Genere'] . "</h2>";
+            echo '<div class="book-scroll dragscroll">';
+
+            
 
             $i = 0;
             foreach ($bookrow as $libro) {
@@ -80,88 +81,6 @@
         }
         ?>
 
-
-        <!--
-        <div class="book-scroll dragscroll">
-            <?php $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = 'Sci-Fi'"); ?>
-
-            <h2><?php echo ($bookrow->fetch_assoc())['Icon']; ?>Sci-Fi</h2>
-
-            <?php
-            $i = 0;
-            foreach ($bookrow as $libro) {
-                if ($i <= 7) {
-                    $i++;
-                    echo '<div class="book">
-                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
-                          </div>';
-                }
-            }
-            $bookrow->close();
-            ?>
-        </div><br><br>
-        <div class="book-scroll dragscroll">
-            <?php $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = 'Drama'"); ?>
-
-            <h2><?php echo ($bookrow->fetch_assoc())['Icon']; ?>Drama</h2>
-
-            <?php
-            $i = 0;
-            foreach ($bookrow as $libro) {
-                if ($i <= 7) {
-                    $i++;
-                    echo '<div class="book">
-                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
-                          </div>';
-                }
-            }
-            $bookrow->close();
-            ?>
-        </div><br><br>
-        <div class="book-scroll dragscroll">
-            <?php $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = 'Fantasy'"); ?>
-
-            <h2><?php echo ($bookrow->fetch_assoc())['Icon']; ?>Fantasy</h2>
-
-            <?php
-            $i = 0;
-            foreach ($bookrow as $libro) {
-                if ($i <= 7) {
-                    $i++;
-                    echo '<div class="book">
-                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
-                          </div>';
-                }
-            }
-            $bookrow->close();
-            ?>
-        </div>
-        <br><br>
-
-
-
-        <h2>All</h2>
-        <div class="book-scroll dragscroll">
-            <div class="book">
-                <img src="/resources/1984.jpg" alt="Book cover" class="book-cover">
-            </div>
-            <div class="book">
-                <img src="/resources/American-psycho.jpg" alt="Book cover" class="book-cover">
-            </div>
-            <div class="book">
-                <img src="/resources/Harry-potter.jpg" alt="Book cover" class="book-cover">
-            </div>
-            <div class="book">
-                <img src="/resources/Hunger-Games.jpg" alt="Book cover" class="book-cover">
-            </div>
-            <div class="book">
-                <img src="/resources/Lord-of-the-rings.jpg" alt="Book cover" class="book-cover">
-            </div>
-            <div class="book">
-                <img src="/resources/The-Little-Prince.jpg" alt="Book cover" class="book-cover">
-            </div>
-        </div>
-        -->
     </div>
 
 </body>

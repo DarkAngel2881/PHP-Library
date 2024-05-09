@@ -127,6 +127,7 @@ header {
 
 textarea {
     background-color: grey;
+    cursor: default;
 }
 
 textarea::placeholder {
