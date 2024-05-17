@@ -66,7 +66,6 @@
         <form action="fetch.php" method="post" enctype="multipart/form-data">
             <div class="book-details">
                 <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
-                <!--<input id="book-button" name="bookCover" class="book-button">-->
                 <label class="cover_input" id="book-button"><input type="file" id="immagine" name="immagine" accept="image/png, image/jpeg"></label>
                 <div id="book-info" class="book-info">
                     <input type="text" id="book-title" name="book-title" placeholder="Title">

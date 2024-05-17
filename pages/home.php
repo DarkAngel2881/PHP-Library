@@ -14,7 +14,8 @@
     <title>Biblioteca Online</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/searchbar.css">
-    <link href="https://fonts.cdnfonts.com/css/fonseca" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/fonseca">
+    <link rel="stylesheet" href="/css/login.css">
     <header>
 
         <div class="container">
@@ -22,13 +23,14 @@
         </div>
 
         <div class="navbar">
-            <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='home.php';">Home</button>
             <form class="search-box" action="search.php">
                 <input type="text" name="query" placeholder="What do you want to read..." />
                 <button type="reset"></button>
             </form>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Generi</button>
             <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro +</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='login.php';">Login</button>
         </div>
     </header>
 </head>
@@ -65,7 +67,7 @@
             echo "<h2>" . ($bookrow->fetch_assoc())['Icon'] . $row['Genere'] . "</h2>";
             echo '<div class="book-scroll dragscroll">';
 
-            
+
 
             $i = 0;
             foreach ($bookrow as $libro) {
