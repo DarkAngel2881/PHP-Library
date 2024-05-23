@@ -1,3 +1,7 @@
+<?php
+require "db_conn.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,37 +34,12 @@
 <body>
     <div class="page">
         <?php
-
-        function db_connection($sql)
-        {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "libri";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $res = $conn->query($sql);
-
-            foreach ($res as $query) {
-                $conn->close();
-
-                return $query;
-            }
-        }
-
         $bookId = $_GET['id'];
 
         $book = db_connection("SELECT libri.*, generi.Icon
         FROM libri
         JOIN generi ON libri.Genere = generi.Nome
-        WHERE libri.ID_Libro = $bookId;");
+        WHERE libri.ID_Libro = $bookId;")->fetch_assoc();
         ?>
 
         <div class="book-details">

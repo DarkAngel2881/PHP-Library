@@ -56,30 +56,6 @@
         $trama = $_POST['trama'];
         $pages = $_POST['book-pages'];
 
-        function db_connection($sql)
-        {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "libri";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $res = $conn->query($sql);
-
-            $conn->close();
-
-            return $res;
-        }
-
-
-
         $sql = "INSERT INTO libri (Copertina, Titolo, Autore, Data_Pubblicazione, Genere, Trama, Numero_Pagine, Casa_Editrice)
 VALUES ('$bookCoverName', '$bookTitle', '$bookAuthor', '$bookYear', '$bookGenre', '$trama', '$pages', '$bookPublisher')";
 

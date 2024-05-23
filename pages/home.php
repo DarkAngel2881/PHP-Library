@@ -1,9 +1,14 @@
+<?php
+require "db_conn.php";
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <script src="/scripts/dragscroll.js"></script>
-    <script>
+
+    <script src="/scripts/dragscroll.js">
         document.addEventListener('DOMContentLoaded', function() {
             var bookScroll = document.querySelector('.book-scroll');
             new dragscroll(bookScroll);
@@ -12,10 +17,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Online</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/test-style.css">
     <link rel="stylesheet" href="/css/searchbar.css">
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/fonseca">
-    <link rel="stylesheet" href="/css/login.css">
     <header>
 
         <div class="container">
@@ -30,37 +34,25 @@
             </form>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Generi</button>
             <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro +</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='login.php';">Login</button>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<button class="btn btn-success btn-hover" onclick="location.href=\'profile.php\';">Profilo</button>';
+            } else {
+                echo '<button class="btn btn-success btn-hover" onclick="location.href=\'login.php\';">Login/Sign Up</button>';
+            }
+            ?>
         </div>
     </header>
 </head>
 
 <body>
-    <?php
-    function db_connection($sql)
-    {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "libri";
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $res = $conn->query($sql);
-
-        $conn->close();
-
-        return $res;
-    } ?>
     <br>
     <div class="page">
         <?php
+        if (isset($_GET['username'])) {
+            $username = $_GET['username'];
+        }
         $genre = db_connection("SELECT DISTINCT Genere FROM libri WHERE genere IS NOT NULL");
         foreach ($genre as $row) {
             $bookrow = db_connection("SELECT Copertina, ID_Libro, Genere, generi.Icon FROM libri JOIN generi ON libri.Genere = generi.Nome WHERE Genere = '" . $row['Genere'] . "'");
@@ -73,9 +65,15 @@
             foreach ($bookrow as $libro) {
                 if ($i <= 7) {
                     $i++;
-                    echo '<div class="book">
-                             <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
-                          </div>';
+                    echo '
+                            <div class="card">
+                                <div class="card2">
+                                    <div class="book">
+                                        <img onclick="location.href=\'book.php?id=' . $libro['ID_Libro'] . '\'" src="/uploads/' . $libro['Copertina'] . '" alt="Book cover" class="book-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        ';
                 }
             }
             $bookrow->close();

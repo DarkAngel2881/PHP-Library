@@ -1,3 +1,5 @@
+<?php require "db_conn.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,28 +61,7 @@
 
 <body>
     <?php
-    function db_connection($sql)
-    {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "libri";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $res = $conn->query($sql);
-
-        $conn->close();
-
-        return $res;
-    }
-    function get_query($query=null, $genre = null, $year = null)
+    function get_query($query = null, $genre = null, $year = null)
     {
         $sql = "SELECT * FROM libri WHERE (Titolo LIKE '%$query%' OR Autore LIKE '%$query%' OR Casa_Editrice LIKE '%$query%')";
         if (!empty($genre)) {
@@ -92,7 +73,6 @@
         // echo $sql;
         return db_connection($sql);
     }
-
     ?>
     <br>
     <div class="page">
@@ -111,25 +91,25 @@
 
         <div class="searched-books">
             <?php
-                $query = isset($_GET['query']) ? $_GET['query'] : null;
-                $genre = isset($_GET['genre']) ? $_GET['genre'] : null;
-                $year = isset($_GET['year']) ? $_GET['year'] : null;
-                foreach (get_query($query, $genre, $year) as $book) {
-                    $i = 0;
-                    if ($i <= 20) {
-                        $i++;
-                        echo '<div class="book">
+            $query = isset($_GET['query']) ? $_GET['query'] : null;
+            $genre = isset($_GET['genre']) ? $_GET['genre'] : null;
+            $year = isset($_GET['year']) ? $_GET['year'] : null;
+            foreach (get_query($query, $genre, $year) as $book) {
+                $i = 0;
+                if ($i <= 20) {
+                    $i++;
+                    echo '<div class="book">
                              <img onclick="location.href=\'book.php?id=' . $book['ID_Libro'] . '\'" src="/uploads/' . $book['Copertina'] . '" alt="Book cover" class="book-cover">
                           </div>';
-                    }
                 }
+            }
 
             ?>
         </div>
 
         <div class="filter-interface">
             <form action="search.php" method="get">
-            <input type="hidden" name="query" value="<?php echo htmlspecialchars($query);?>">
+                <input type="hidden" name="query" value="<?php echo htmlspecialchars($query); ?>">
                 <div class="filter-option">
                     <label class="filter-label">Genre</label>
                     <select class="filter-select" type="" id="genre" name="genre">

@@ -1,3 +1,7 @@
+<?php
+    require "db_conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,48 +79,13 @@
                     <input type="number" id="book-year" name="book-year" placeholder="Year" min="0" max="<?php echo date("Y") ?>" step="1"><br><br>
                     <select type="" id="book-genre" name="book-genre" placeholder="Genre">
                         <option value="none" selected disabled hidden>Genre</option>
-                        <?php $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "libri";
+                        <?php
+                        $genres = db_connection("SELECT Icon, Nome FROM generi;");
 
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
-                        $sql = "SELECT Icon, Nome FROM generi;";
-
-                        $conn = $conn->query($sql);
-
-                        foreach ($conn as $genre) {
+                        foreach ($genres as $genre) {
                             echo "<option value='" . $genre["Nome"] . "'>" . $genre['Icon'] . $genre['Nome'] . "</option>";
                         }
-
-                        $conn->close(); ?>
-
-                        <!--<option value="fantasy">🧙🏻‍♂️Fantasy</option>
-                        <option value="horror">💀Horror</option>
-                        <option value="romance">💘Romance</option>
-                        <option value="thriller">😱Thriller</option>
-                        <option value="comedy">🤣Comedy</option>
-                        <option value="drama">🥹Drama</option>
-                        <option value="action">🔫Action</option>
-                        <option value="scifi">🛸Sci-Fi</option>
-                        <option value="adventure">⛵Adventure</option>
-                        <option value="science">🔬Science</option>
-                        <option value="literature">✍🏻Literature</option>
-                        <option value="history">🕰️History</option>
-                        <option value="biography">🧑🏻Biography</option>
-                        <option value="comics">💬Comics</option>
-                        <option value="manga">⛩️Manga</option>
-                        <option value="children">👦🏻Children</option>
-                        <option value="crime">🕵🏻Crime</option>
-                        <option value="food">🍴Food</option>
-                        -->
+                        ?>
                     </select>
 
 
