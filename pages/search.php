@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Online</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/test-style.css">
     <link rel="stylesheet" href="/css/searchbar.css">
     <link rel="stylesheet" href="/css/filters.css">
     <style>
@@ -76,6 +76,8 @@
     ?>
     <br>
     <div class="page">
+        <br>
+        <div id="background"></div>
         <div class="search">
             <form class="search-box" action="search.php">
                 <input type="text" name="query" placeholder="Search for title, author or publisher" />
@@ -115,12 +117,12 @@
                     <select class="filter-select" type="" id="genre" name="genre">
                         <option value="none" selected disabled hidden></option>
                         <?php
-                        $sql = "SELECT Icon, Nome FROM generi;";
+                        $sql = "SELECT Nome FROM generi;";
 
                         $genres = db_connection($sql);
 
                         foreach ($genres as $genre) {
-                            echo "<option value='" . $genre["Nome"] . "'>" . $genre['Icon'] . $genre['Nome'] . "</option>";
+                            echo "<option value='" . $genre["Nome"] . "'>" . $genre['Nome'] . "</option>";
                         }
                         ?>
                     </select>

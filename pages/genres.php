@@ -46,7 +46,7 @@ session_start();
 </head>
 
 <body>
-
+<div id="background"></div>
     <br>
     <div class="page">
         <?php

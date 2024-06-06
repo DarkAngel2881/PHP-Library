@@ -26,6 +26,7 @@ session_start();
 </head>
 
 <body>
+    <div id="background"></div>
     <?php
     $username = $_SESSION['username'];
     ?>

@@ -1,5 +1,6 @@
 <?php
-    require "db_conn.php";
+require "db_conn.php";
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/test-style.css">
     <link rel="stylesheet" href="/css/searchbar.css">
     <link href="https://fonts.cdnfonts.com/css/fonseca" rel="stylesheet">
     <title>Document</title>
@@ -46,27 +47,43 @@
             margin: auto;
             -webkit-tap-highlight-color: transparent;
         }
+
+        h3{
+            text-align: left;
+            margin: 0;
+            margin-bottom: 0.5em;
+        }
     </style>
     <header>
         <div class="container">
             <h1>Biblioteca Online</h1>
         </div>
         <div class="navbar">
-            <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='home.php';">Home</button>
             <form class="search-box" action="search.php">
                 <input type="text" name="query" placeholder="What do you want to read..." />
                 <button type="reset"></button>
             </form>
-            <button class="btn btn-success btn-hover" onclick="location.href='genres.php';">Gneri</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro +</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='genres.php';">Generi</button>
+            <?php
+            if (isset($_SESSION['username'])) {
+                if ($_SESSION['is_admin']) {
+                    echo '<button class="btn btn-success btn-hover" onclick="location.href=\'new_book.php\';">Libro +</button>';
+                }
+                echo '<button class="btn btn-success btn-hover" onclick="location.href=\'profile.php\';">Profilo</button>';
+            } else {
+                echo '<button class="btn btn-success btn-hover" onclick="location.href=\'login.php\';">Login/Sign Up</button>';
+            }
+            ?>
         </div>
     </header>
 </head>
 
 <body>
-
+            <br>
+            <div id="background"></div>
     <div class="page">
-        <h2 style="margin-left: 10px;">new book</h2>
+        <h2 style="margin-left: 10px;">New Book</h2>
         <form action="fetch.php" method="post" enctype="multipart/form-data">
             <div class="book-details">
                 <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
