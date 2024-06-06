@@ -80,10 +80,10 @@
                     <select type="" id="book-genre" name="book-genre" placeholder="Genre">
                         <option value="none" selected disabled hidden>Genre</option>
                         <?php
-                        $genres = db_connection("SELECT Icon, Nome FROM generi;");
+                        $genres = db_connection("SELECT Nome FROM generi;");
 
                         foreach ($genres as $genre) {
-                            echo "<option value='" . $genre["Nome"] . "'>" . $genre['Icon'] . $genre['Nome'] . "</option>";
+                            echo "<option value='" . $genre["Nome"] . "'>" . $genre['Nome'] . "</option>";
                         }
                         ?>
                     </select>

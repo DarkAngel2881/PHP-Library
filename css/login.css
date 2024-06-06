@@ -35,12 +35,12 @@ a:hover {
     gap: 10px;
     padding-left: 2em;
     padding-right: 2em;
-    padding-bottom: 0.4em;
     background-color: #171717;
     border-radius: 25px;
     transition: 0.4s ease-in-out;
     font-family: Arial, Helvetica, sans-serif;
-    padding-bottom: 40px;
+    padding-bottom: 2.7em;
+    position: relative;
 }
 
 .card {
@@ -102,7 +102,7 @@ a:hover {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin-top: 2.5em;
+    margin-top: 2em;
 }
 
 .button1 {
@@ -186,4 +186,13 @@ a:hover {
     height: 1.3em;
     width: 1.3em;
     fill: white;
+}
+
+.error {
+    text-align: center;
+    margin-top: 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

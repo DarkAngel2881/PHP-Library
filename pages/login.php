@@ -1,20 +1,36 @@
 <?php
-    require "db_conn.php";
-    if(isset($_POST['username'])){
-        if(isset($_POST['password'])){
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $user = db_connection("SELECT * FROM utente WHERE Nome = '$username' and Pwd = '$password';");
-            if($user->fetch_assoc()['Nome'] != null){
-                echo $user->fetch_assoc()['Nome'];
-                session_start();
-                $_SESSION['username'] = $username;
-                header('Location: home.php');
-                exit();
+require "db_conn.php";
+if (isset($_POST['username'])) {
+    if (isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        if (isset($_POST['submit'])) {
+            $sign_type = $_POST['submit'];
+            if ($sign_type == 'login') {
+                $user = db_connection("SELECT * FROM utente WHERE Nome = '$username' and Pwd = '$password';");
+                if (isset($user->fetch_assoc()['Nome'])) {
+                    session_start();
+                    $_SESSION['username'] = $username;
+                    header('Location: home.php');
+                    exit();
+                }
+                $_GET['login_error'] = 'Invalid Username or Password';
+            } else {
+                $user = db_connection("SELECT * FROM utente WHERE Nome = '$username'");
+                if (!isset($user->fetch_assoc()['Nome'])) {
+                    db_connection("INSERT INTO utente (Nome, Pwd) VALUES ('$username', '$password');");
+                    session_start();
+                    $_SESSION['username'] = $username;
+                    header('Location: home.php');
+                    exit();
+                } else {
+                    $_GET['login_error'] = 'Username already exists';
+                }
             }
         }
     }
-    ?>
+}
+?>
 
 
 <!DOCTYPE html>
@@ -30,7 +46,8 @@
             display: flex;
             justify-content: center;
         }
-        head{
+
+        head {
             display: flex;
             justify-content: left;
         }
@@ -39,14 +56,14 @@
 </head>
 
 <body>
-    
-    
-        
-    
-    <br><br>
+
+
+
+
 
     <div class="card">
         <div class="card2">
+
             <form class="form" method="POST" action="login.php">
 
                 <p id="heading">Login</p>
@@ -63,14 +80,24 @@
                     <input type="password" name="password" class="input-field" placeholder="Password" />
                 </div>
                 <div class="btn">
-                    <button class="button1" type="submit">
+                    <button class="button1" type="submit" name="submit" value="login">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </button>
-                    <button class="button2" type="submit">Sign Up</button>
+                    <button class="button2" type="submit" name="submit" value="signup">Sign Up</button>
                     <br>
                 </div>
             </form>
         </div>
+    </div>
+
+
+
+    <div class="error">
+        <?php
+        if (isset($_GET['login_error'])) {
+            echo "<p style='color:red;'>" . $_GET['login_error'] . "</p>";
+        }
+        ?>
     </div>
 </body>
 

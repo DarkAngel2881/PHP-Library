@@ -25,7 +25,7 @@ require "db_conn.php"
             <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
             <button class="btn btn-secondary btn-hover" onclick="location.href='search.html';">Cerca</button>
             <button class="btn btn-success btn-hover" onclick="location.href='genres.php';">Generi</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Tendenza</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='genres.php';">Tendenza</button>
             <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro +</button>
         </div>
     </header>
@@ -36,7 +36,7 @@ require "db_conn.php"
         <?php
         $bookId = $_GET['id'];
 
-        $book = db_connection("SELECT libri.*, generi.Icon
+        $book = db_connection("SELECT libri.*
         FROM libri
         JOIN generi ON libri.Genere = generi.Nome
         WHERE libri.ID_Libro = $bookId;")->fetch_assoc();
@@ -50,7 +50,7 @@ require "db_conn.php"
                 <?php echo "<strong>" . $book['Numero_Pagine'] . "</strong> pagine" ?><br><br>
                 <?php echo "<strong>" . $book['Casa_Editrice'] . "</strong>" ?><br><br>
                 <?php echo "<strong>" . date('Y', strtotime($book['Data_Pubblicazione'])) . "</strong> (anno edizione)" ?><br><br>
-                <?php echo "<div style='font-size: 1.25em; display: inline-block'>" . $book['Icon'] . "</div><strong> " . $book['Genere'] . "</strong>" ?>
+                <?php echo "<strong> " . $book['Genere'] . "</strong>" ?>
 
             </div>
         </div>

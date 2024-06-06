@@ -1,3 +1,7 @@
+<?php
+require 'db_conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

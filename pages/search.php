@@ -53,7 +53,7 @@
 
         <div class="navbar">
             <button class="btn btn-primary btn-hover" onclick="location.href='home.php';">Home</button>
-            <button class="btn btn-success btn-hover" onclick="location.href='genres.html';">Generi</button>
+            <button class="btn btn-success btn-hover" onclick="location.href='genres.php';">Generi</button>
             <button class="btn btn-success btn-hover" onclick="location.href='new_book.php';">Libro +</button>
         </div>
     </header>
