@@ -1,46 +1,73 @@
 <?php
 require "db_conn.php";
+// Check if the username is set in the POST request
 if (isset($_POST['username'])) {
+    // Check if the password is set in the POST request
     if (isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (isset($_POST['submit'])) {
-            $sign_type = $_POST['submit'];
-            if ($sign_type == 'login') {
-                $user = db_connection("SELECT * FROM utente WHERE Nome = '$username' and Pwd = '$password';");
-                if (isset($user->fetch_assoc()['Nome'])) {
-                    session_start();
-                    $_SESSION['username'] = $username;
-                    header('Location: home.php');
-                    exit();
-                }
-                $_GET['login_error'] = 'Invalid Username or Password';
+
+        // Check if the submit button is set to 'login'
+        if (isset($_POST['submit']) && $_POST['submit'] == 'login') {
+            // Query to retrieve the user from the database
+            $user = db_connection("SELECT * FROM utente WHERE Nome = '$username' and Pwd = '$password';");
+
+            // Check if the user exists
+            if (isset($user->fetch_assoc()['Nome'])) {
+                // Start the session
+                session_start();
+
+                // Set the username session variable
+                $_SESSION['username'] = $username;
+
+                // Redirect to home.php
+                header('Location: home.php');
+                exit();
             } else {
-                $user = db_connection("SELECT * FROM utente WHERE Nome = '$username'");
-                if (!isset($user->fetch_assoc()['Nome'])) {
-                    db_connection("INSERT INTO utente (Nome, Pwd) VALUES ('$username', '$password');");
-                    session_start();
-                    $_SESSION['username'] = $username;
-                    header('Location: home.php');
-                    exit();
-                } else {
-                    $_GET['login_error'] = 'Username already exists';
-                }
+                // Set the login error message
+                $_GET['login_error'] = 'Invalid Username or Password';
+            }
+        } else {
+            // Query to check if the username already exists
+            $user = db_connection("SELECT * FROM utente WHERE Nome = '$username'");
+
+            // Check if the username does not exist
+            if (!isset($user->fetch_assoc()['Nome'])) {
+                // Insert the new user into the database
+                db_connection("INSERT INTO utente (Nome, Pwd) VALUES ('$username', '$password');");
+
+                // Start the session
+                session_start();
+
+                // Set the username session variable
+                $_SESSION['username'] = $username;
+
+                // Redirect to home.php
+                header('Location: home.php');
+                exit();
+            } else {
+                // Set the login error message
+                $_GET['login_error'] = 'Username already exists';
             }
         }
     }
 }
 ?>
 
-
+<!-- HTML document starts -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- Meta tags and title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="/css/login.css">
-    <title>Document</title>
+
+    <!-- Style for the body and head elements -->
     <style>
         body {
             display: flex;
@@ -52,15 +79,17 @@ if (isset($_POST['username'])) {
             justify-content: left;
         }
     </style>
+
+    <!-- Link to home.php -->
     <a id="back-button" href="home.php">Home</a>
 </head>
 
 <body>
+    <!-- Background element -->
+    <div id="background"></div>
 
-<div id="background"></div>
 
-
-
+    <!-- Login form wrapped in animated box-->
     <div class="card">
         <div class="card2">
 
@@ -90,14 +119,13 @@ if (isset($_POST['username'])) {
         </div>
     </div>
 
-
-
     <div class="error">
         <?php
+        // Display the login error message
         if (isset($_GET['login_error'])) {
-            echo "<p style='color:red;'>" . $_GET['login_error'] . "</p>";
+            echo "<p style='color:red;'>". $_GET['login_error']. "</p>";
         }
-        ?>
+       ?>
     </div>
 </body>
 
