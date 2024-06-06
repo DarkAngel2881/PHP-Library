@@ -48,7 +48,7 @@ session_start();
             -webkit-tap-highlight-color: transparent;
         }
 
-        h3{
+        h3 {
             text-align: left;
             margin: 0;
             margin-bottom: 0.5em;
@@ -80,10 +80,11 @@ session_start();
 </head>
 
 <body>
-            <br>
-            <div id="background"></div>
+    <br>
+    <div id="background"></div>
     <div class="page">
         <h2 style="margin-left: 10px;">New Book</h2>
+        <!-- Form for the book details -->
         <form action="fetch.php" method="post" enctype="multipart/form-data">
             <div class="book-details">
                 <div id="book" class="book"><img id="book-cover" class="book-cover" src="" alt="Book Cover"></div>
@@ -108,16 +109,17 @@ session_start();
 
                 </div>
             </div>
-
+            <!-- Plot text box -->
             <h3>Trama</h3>
             <textarea name="trama" id="trama" cols="100" rows="10" placeholder="trama del libro"></textarea>
             <br>
 
-            <input type="submit" value="Submit" id="submit-button">
+            <input class="button1" type="submit" value="Submit" id="submit-button">
         </form>
     </div>
 
     <script>
+        // When cover image get entered the button gets replaced by the image
         const bookButton = document.getElementById('book-button');
         const book = document.getElementById('book');
         const bookCover = document.getElementById('book-cover');
